@@ -1,12 +1,12 @@
-''' kkklk'''
 import tkinter as tk
-from tkinter import messagebox, Frame, PhotoImage, Label
-import requests
+from tkinter import messagebox, Frame, PhotoImage, Label, Scrollbar, Canvas
+# Предположим, что OrgChartApp также импортируем
 from jkjk import OrgChartApp
-
+from main import sotrud  # Импортируйте вашу функцию sotrud
+from poi import EmployeeCard
+import requests
 
 API_URL = "http://127.0.0.1:8000/api/v1/SignIn"
-
 
 def open_success_window():
     '''Открывает окно с успешным входом'''
@@ -44,7 +44,35 @@ def open_success_window():
     frame_right_table = Frame(window_main, background='#DCDCDC', height=480, width=370)
     frame_right_table.grid(row=1, column=1)
 
+    # Создаем Canvas для размещения карточек
+    canvas = Canvas(frame_right_table, width=360, height=480)
+    scrollbar = Scrollbar(frame_right_table, orient="vertical", command=canvas.yview)
+    scrollable_frame = Frame(canvas)
+
+    # Устанавливаем ScrollableFrame на Canvas
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+
+    # Подключаем полосу прокрутки к Canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+
+    # Упаковываем Canvas и Scrollbar в фрейм
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    # Получаем данные сотрудников из функции sotrud
+    employees_data = sotrud()
+
+    # Создаем карточки для каждого сотрудника и добавляем их во scrollable_frame
+    for employee in employees_data:
+        card = EmployeeCard(scrollable_frame, employee)  # Убедитесь, что EmployeeCard импортирован
+
     window_main.protocol("WM_DELETE_WINDOW", close_program)
+
 
 
 def close_program():
@@ -72,7 +100,6 @@ def sign_in():
         messagebox.showerror("Ошибка соединения", "Не удалось соединиться с сервером.")
     except requests.Timeout:
         messagebox.showerror("Ошибка", "Запрос превысил время ожидания.")
-
 
 # Основное окно приложения
 root = tk.Tk()

@@ -1,7 +1,7 @@
 ''' апишка'''
 # import fastapi as tk
 from fastapi import FastAPI, HTTPException, Body
-from connect import User, Document, Comment
+from connect import User, Document, Comment, Employee
 
 app = FastAPI()
 
@@ -63,3 +63,18 @@ def num_com_doc(id_n: int):
 async def get_number_com(documentId: int):
     ''' Получить список комментариев к документу'''
     return num_com_doc(id_n=documentId)
+
+
+def sotrud():
+    ''' kjkjkj'''
+    avav = Employee.select()
+    return [{'id': av.id, 'fcs': av.fcs, 'department': av.department,
+             'post': av.post, 'work_phone': av.work_phone, 'personal_phone': av.personal_phone, 
+             'office': av.office, 'cor_email': av.cor_email, 'birth_date': av.birth_date}
+             for av in avav]
+
+
+@app.get('/emmoly')
+def get_sotrud():
+    ''' kjkjkj'''
+    return sotrud()
