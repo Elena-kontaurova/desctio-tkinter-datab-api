@@ -1,3 +1,4 @@
+'''hjhjhjhjhjhj'''
 import tkinter as tk
 from tkinter import Scrollbar, Canvas, Frame
 from poi import EmployeeCard
@@ -36,7 +37,7 @@ def main():
 
     # Создаем карточки для каждого сотрудника и добавляем их во scrollable_frame
     for employee in employees_data:
-        card = EmployeeCard(scrollable_frame, employee)
+        _ = EmployeeCard(scrollable_frame, employee)
 
     # Запускаем главный цикл
     root.mainloop()

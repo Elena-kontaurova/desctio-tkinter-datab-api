@@ -1,10 +1,11 @@
+'''' ЗАПИСУК ОСВНОЙ'''
 import tkinter as tk
 from tkinter import messagebox, Frame, PhotoImage, Label, Scrollbar, Canvas
-# Предположим, что OrgChartApp также импортируем
+import requests
 from jkjk import OrgChartApp
 from main import sotrud  # Импортируйте вашу функцию sotrud
 from poi import EmployeeCard
-import requests
+
 
 API_URL = "http://127.0.0.1:8000/api/v1/SignIn"
 
@@ -69,7 +70,7 @@ def open_success_window():
 
     # Создаем карточки для каждого сотрудника и добавляем их во scrollable_frame
     for employee in employees_data:
-        card = EmployeeCard(scrollable_frame, employee)  # Убедитесь, что EmployeeCard импортирован
+        _ = EmployeeCard(scrollable_frame, employee)
 
     window_main.protocol("WM_DELETE_WINDOW", close_program)
 
