@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox, Frame, PhotoImage, Label
 import requests
+from jkjk import OrgChartApp
 
 
 API_URL = "http://127.0.0.1:8000/api/v1/SignIn"
@@ -35,6 +36,7 @@ def open_success_window():
 
     frame_left_table = Frame(window_main, background='#DCDCDC', height=480, width=370)
     frame_left_table.grid(row=1, column=0)
+    OrgChartApp(frame_left_table)
 
     frame_right = Frame(window_main, background='#FFFFFF', height=520, width=400)
     frame_right.grid(row=1, column=1)

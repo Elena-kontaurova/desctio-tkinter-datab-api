@@ -1,6 +1,7 @@
 ''' соединение с базой данных'''
 from peewee import MySQLDatabase, Model, CharField, AutoField, IntegerField, \
-                ForeignKeyField, DateField, TextField, TimeField
+                ForeignKeyField, DateField, TextField, TimeField, DateTimeField, \
+                BooleanField
 
 
 db = MySQLDatabase('corporation', user='root', password='lenok',
@@ -130,9 +131,30 @@ class User(BaseModels):
     password = CharField()
 
 
+class Document(BaseModels):
+    ''' документы'''
+    id = AutoField()
+    title = CharField(null=True)
+    date_created = DateTimeField()
+    date_updated = DateTimeField()
+    category = CharField(null=True)
+    has_comments = BooleanField()
+
+
+class Comment(BaseModels):
+    '''Комментарий'''
+    document = ForeignKeyField(Document, backref='comments')
+    text = TextField()
+    date_created = DateTimeField()
+    date_updated = DateTimeField()
+    author_name = CharField()
+    author_position = CharField()
+
+
 db.connect()
 db.create_tables([Department, Employee, EmployeeCard, EmployeeInformation,
                   TrainingCategories, Trainings, Materials, Absences,
-                  Replacements, Events, MaterialsInform, User],
+                  Replacements, Events, MaterialsInform, User, Document,
+                  Comment],
                  safe=True)
 db.close()
