@@ -33,7 +33,7 @@ class EmployeeCard:
         label_office = f"Кабинет: {office}"
 
         # Устанавливаем метки для отображения информации
-        title_label = tk.Label(self.card_frame, text=label_title, 
+        title_label = tk.Label(self.card_frame, text=label_title,
                                bg='#D1FFA8', anchor='w', font=("Arial", 10, 'bold'))
         title_label.pack(fill='x')  # Заголовок занимает всю ширину
 

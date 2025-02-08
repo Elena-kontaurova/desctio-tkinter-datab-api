@@ -70,6 +70,7 @@ def open_success_window():
 
     # Создаем карточки для каждого сотрудника и добавляем их во scrollable_frame
     for employee in employees_data:
+
         _ = EmployeeCard(scrollable_frame, employee)
 
     window_main.protocol("WM_DELETE_WINDOW", close_program)
