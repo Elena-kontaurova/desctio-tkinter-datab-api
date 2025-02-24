@@ -1,5 +1,6 @@
 '''fjfjfj'''
 import tkinter as tk
+from tkinter import PhotoImage, Label
 
 def gerate(frame):
     ''' jkjkj'''
@@ -57,12 +58,39 @@ def sotrud(frame):
 
 aga = tk.Tk()
 aga.geometry("800x600")
+
+sosi0 = tk.Frame(aga, background='green', width=800, height=90)
+sosi0.grid(row=0, column=0, columnspan=2)
+
+logo_image = PhotoImage(file='Logo.png')
+logo_image = logo_image.subsample(4)
+logo_lable = Label(sosi0, image=logo_image, bg='green')
+logo_lable.grid(row=0, column=0, sticky='w', padx=10)
+
+pizda = tk.Frame(sosi0, background='white')
+pizda.grid(column=0, row=0, columnspan=2, pady=10, padx=120)
+
+text_label = tk.Label(pizda, text="Организационная структура", bg='white', fg='black', width=80)
+text_label.grid(row=0, column=1, columnspan=2)
+
 sosi1 = tk.Frame(aga, background='green', width=380, height=400)
-sosi1.grid(row=0, column=0, pady=130, padx=30, sticky='n')
+sosi1.grid(row=1, column=0, pady=130, padx=30, sticky='n')
 gerate(sosi1)
 
-sosi2 = tk.Frame(aga, width=400, height=500)
-sosi2.grid(row=0, column=16, pady=130, padx=30, sticky='n')
+sosi2 = tk.Frame(aga, width=400, height=400)
+sosi2.grid(row=1, column=1, pady=130, padx=30, sticky='n')
 sotrud(sosi2)
+
+# sosi3 = tk.Frame(aga, background='green', width=300, height=50)
+# sosi3.grid(row=2, column=1)
+
+def open_window():
+    ''' kjkjs'''
+    aaa = tk.Tk()
+    aaa.geometry('500x500')
+    aaa.mainloop()
+
+bb = tk.Button(sosi2, command=open_window, text='+', background='green')
+bb.grid(row=2, column=0, sticky='se', padx=10, pady=20)
 
 aga.mainloop()
