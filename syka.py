@@ -1,6 +1,7 @@
 '''fjfjfj'''
 import tkinter as tk
 from tkinter import PhotoImage, Label
+from connect import Department
 
 def gerate(frame):
     ''' jkjkj'''
@@ -92,5 +93,12 @@ def open_window():
 
 bb = tk.Button(sosi2, command=open_window, text='+', background='green')
 bb.grid(row=2, column=0, sticky='se', padx=10, pady=20)
+
+
+def fetch_comments():
+    ''' nkn'''
+    comments = Department.select()
+    return comments
+
 
 aga.mainloop()
